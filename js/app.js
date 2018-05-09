@@ -1,42 +1,65 @@
 'use strict';
 
-var timeArr = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-var pikeStore = {
-    minimumCustomers: 23,
-    maxCustomers: 65,
-    averageCookies: 6.3,
-    randomCustomers: function() {
-        return Math.floor(Math.random() * (this.maxCustomers - this.minimumCustomers + 1)) + this.minimumCustomers;
-    },
-    customersPerHour: [],
-    fillCustomersArray: function() {
+// var pikePlace = {
+//     name: 'Pike Place Market',
+//     minCustomersPerHour: 23,
+//     maxCustomersPerHour: 65,
+//     avgCookiesPerCustomer: 6.3,
+//     customersEachHour: [],
+//     cookiesSoldEachHour: [],
+//     totalDailyCookieSales: 0
+// };
 
-        for (var i = 0; i < timeArr.length; i++) {
-            this.customersPerHour[i] = this.randomCustomers()
-        }
-        var sum = 0;
-        totalPrintOutTime: (sum += timeArr[i]);
+// pikePlace.calcCustomersEachHour = function() {
+//     for (var i = 0; i < hours.length; i++) {
+//         //calc a random number between min/max and put it into the array
+//         this.customersEachHour.push(random(this.minCustomersPerHour, this.maxCustomersPerHour));
+//     }
+// }
 
-    }
+// pikePlace.calcCookiesSoldEachHour = function() {
+//     pikePlace.calcCustomersEachHour();
+//     // multiply our random customers by the average cookies per
+//     for (var i = 0; i < hours.length; i++) {
+//         this.cookiesSoldEachHour.push(Math.ceil(this.customersEachHour[i] * this.avgCookiesPerCustomer));
+//         this.totalDailyCookieSales = this.totalDailyCookieSales + this.cookiesSoldEachHour[i];
+//         // console.log(this.totalDailyCookieSales);
+//     }
+// }
+
+// pikePlace.render = function() {
+//     pikePlace.calcCookiesSoldEachHour();
+//     // grab the parent from the DOM
+//     var ulEl = document.getElementById('pike')
+//     for (var i = 0; i < hours.length; i++) {
+//         // create an element
+//         var liEl = document.createElement('li');
+//         // give the element content
+//         liEl.textContent = hours[i] + ': ' + this.cookiesSoldEachHour[i] + ' cookies'
+//             // append the child to the parent
+//             // ulEl.appendChild(liEl);
+//     }
+//     liEl = document.createElement('li');
+//     liEl.textContent = 'Total: ' + this.totalDailyCookieSales + ' cookies';
+//     // ulEl.appendChild(liEl);
+// }
+
+// function random(min, max) {
+//     return Math.floor(Math.random() * (max - min + 1)) + min; // via MDN
+// }
+
+// pikePlace.render();
+
+var pikeStore = new object();
+pikeStore.nameOfTheStore = '1st and Pike'
+pikeStore.mininmumCustomersPerHour = 23;
+pikeStore.maximumCustomersPerHour = 65;
+pikeStore.averageCookiesPerCustomers = 6.3;
+pikeStore.customersPerHour: [],
+    pikeStore.cookiesSoldPerHour: [],
 
 
-}
-
-pikeStore.fillCustomersArray()
-console.log(pikeStore.customersPerHour)
-console.log(totalPrintOutTime)
-
-
-
-
-
-
-/*Place the times
-Create a for loop 14 times calling the randomCustomer function and push the result into customersPerHour.*/
-
-/* I need to build an object that stores the min/max hourly for customers.
-Use an array with a loop.
-Another Array is required. 
-Display the Array as an UL in the browser.
-Something to calculate the sum.*/
+    pikeStore.checkAvailability = function() {
+        return this.mininmumCustomersPerHour - this.averageCookiesPerCustomers;
